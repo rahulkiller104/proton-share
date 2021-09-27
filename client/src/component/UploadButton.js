@@ -9,8 +9,8 @@ import SaveIcon from '@mui/icons-material/Save';
 
 export default function CircularIntegration(props) {
  const {onSubmit,loading,success}=props;
- console.log(success);
- console.log(loading);
+//  console.log(success);
+//  console.log(loading);
 
 
 const buttonSx = {

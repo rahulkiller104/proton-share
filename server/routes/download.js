@@ -16,11 +16,9 @@ router.get('/:uuid',async(req,res,next)=>{
             );
             return next(error);
           }
-      // console.log(response);
-      // return;
-
+ 
      filePath=response.path;
-    //  console(filePath);
+
     
     }catch (err) {
         const error = new HttpError(

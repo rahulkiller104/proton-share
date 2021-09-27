@@ -33,17 +33,13 @@ const Upload =()=>{
     const submitFile=()=>{
         const formData = new FormData();
         formData.append('myfile',selectedFile);
-        // g(selectedFile.name);
         setSuccess(false);
         setLoading(true);
         axios.post('http://localhost:5000/api/files',formData
         ).then((res)=>{
             setSuccess(true);
             setLoading(false);
-            // setSelectedFile(null);
             setShowemail(true);
-            console.log(res.data);
-            // setUrl(res.data.file);
             setUuid(res.data.uuid);
             
         }).catch(err=>{

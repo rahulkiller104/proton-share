@@ -26,5 +26,3 @@ function App() {
 }
 
 export default App;
-//manishkr5633@gmail.com
-//

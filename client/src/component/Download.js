@@ -7,23 +7,17 @@ import { Button, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 const Download=()=>{
    const [response,setResponse]=useState(null);
-   const [loading,setLoading]=useState(true);
    const [error,setError]=useState(false);
     const uuid=useParams().uuid;
     useEffect(()=>{
-        setLoading(true)
         axios.get(`http://localhost:5000/files/${uuid}`)
         .then(res=>{
          setResponse(res.data);
-         setLoading(false);
         })
         .catch(err=>{
-            setLoading(false);
             setError(true);
         })
     },[uuid])
-
-    console.log(response);
  
   if(error){
       return(

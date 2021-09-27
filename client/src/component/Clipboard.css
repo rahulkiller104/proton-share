@@ -23,7 +23,6 @@
     font-size: 18px;
     border: none;
     outline: none;
-    cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
 }

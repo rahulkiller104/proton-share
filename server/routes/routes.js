@@ -11,8 +11,8 @@ const multers3 = require('multer-s3');
 const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIAVOZCSMTBWBB4AK45',
-    secretAccessKey:'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'
+    accessKeyId: process.env.AWS_ACCESS_ID,
+    secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY
 });
 
 const uploadS3 = multer({
@@ -28,6 +28,7 @@ const uploadS3 = multer({
     }
   })
 });
+
 
 router.post('/',uploadS3.single("myfile") ,async(req,res,next)=>{
 
@@ -63,12 +64,13 @@ router.post('/',uploadS3.single("myfile") ,async(req,res,next)=>{
             return next(error);
         }
 
-        return res.status(200).json({uuid:response.uuid});
+        return res.status(200).json({uuid:response.uuid,path:req.file.location});
 
     // })
 
 });
      
+
 
 
 router.post('/send',async(req,res,next)=>{
@@ -110,7 +112,7 @@ router.post('/send',async(req,res,next)=>{
         text:`${emailFrom} shared a file with you`,
         html:emailTemplate({
             emailFrom:emailFrom,
-            downloadLink:response.path,         //`${process.env.APP_BASE_URL}/files/${response.uuid}`,
+            downloadLink:response.path,        
             size:parseInt(response.size/1000)+'KB',
             expires:'24 hours'
         })
