@@ -1,0 +1,24 @@
+h2{
+    color:#1E88E5;
+    background-color: none;
+}
+
+.icon-style{
+    color:#64B5F6;
+    background-color: none;
+    font-size: 45px;
+    display: block;
+    margin-bottom: 5%;
+}
+.input-file{
+    display: none;
+}
+.btn {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
