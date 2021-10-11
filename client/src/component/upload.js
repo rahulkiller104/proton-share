@@ -53,8 +53,8 @@ const Upload =()=>{
      if(selectedFile){
          details=(
              <div className='details'> 
-              <p><span style={{fontWeight: 600}}>FileName: </span>{selectedFile.name.slice(0, 20) + (selectedFile.name.length > 20 ? "..." : "")}</p>
-              <p><span style={{fontWeight: 600}}>Size: </span>{Math.round(selectedFile.size/1000)}KB</p>
+              <p><span style={{fontWeight: 600, fontFamily: 'sans-serif'}}>FileName: </span>{selectedFile.name.slice(0, 20) + (selectedFile.name.length > 20 ? "..." : "")}</p>
+              <p><span style={{fontWeight: 600, fontFamily: 'sans-serif'}}>Size: </span>{Math.round(selectedFile.size/1000)}KB</p>
              </div>
          )
      }
