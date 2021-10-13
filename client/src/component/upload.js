@@ -10,6 +10,7 @@ import Email from './Email';
 import Clipboard from './Clipboard';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import Navbar from './navbar';
 // import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -77,6 +78,7 @@ const Upload =()=>{
 
     return(
         <div>
+            <Navbar/>
             <Card>
             <h2>Upload The File Here.</h2>
         
