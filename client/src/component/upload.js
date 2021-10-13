@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Card from './Card';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import './upload.css'
@@ -6,10 +7,14 @@ import CircularIntegration from './UploadButton';
 import { useRef, useState } from 'react';
 import { Button } from '@mui/material';
 import Email from './Email';
-import Alert from '@mui/material/Alert';
 import Clipboard from './Clipboard';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 // import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
 const Upload =()=>{
     const [selectedFile,setSelectedFile]=useState(null);
@@ -19,7 +24,8 @@ const Upload =()=>{
     const fileInput = useRef(null);
     const [uuid,setUuid]=useState(null);
     // const [url,setUrl]=useState(null);
-    const [error,setError]=useState(false);
+    const [open, setOpen] = React.useState(false);
+
 
     
 
@@ -45,7 +51,7 @@ const Upload =()=>{
         }).catch(err=>{
             setSuccess(false);
             setLoading(false);
-            setError(true);
+            setOpen(true);
         })
      }
      let details=null;
@@ -58,6 +64,14 @@ const Upload =()=>{
              </div>
          )
      }
+
+     const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
      
    
 
@@ -66,8 +80,11 @@ const Upload =()=>{
             <Card>
             <h2>Upload The File Here.</h2>
         
-            {error&&
-            ( <Alert severity="error">Something Went Wrong</Alert>)}
+         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                  Something went wrong, please try again!
+                </Alert>
+              </Snackbar>
             <input type='file'  onChange={fileUpload}  ref={fileInput}  className='input-file'/>
            { <button className='btn' onClick={()=>fileInput.current.click()}>
             <UploadFileIcon className='icon-style'  sx={{ fontSize: 100}} />
